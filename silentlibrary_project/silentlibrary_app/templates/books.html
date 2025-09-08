@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% load highlight %}
+
+{% block title %}Books — Silent Library{% endblock %}
+
+{% block content %}
+<main class="py-5">
+  <div class="container">
+
+    <form method="get"
+          class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div>
+        <h1 class="fw-bold m-0">Books</h1>
+        <small class="text-muted">Browse and filter the collection</small>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <input name="q" type="search" class="form-control"
+               placeholder="Search by title or author…"
+               value="{{ q|default:'' }}">
+
+        <select name="sort" class="form-select">
+          <option value="title" {% if sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+          <option value="-title" {% if sort == '-title' %}selected{% endif %}>Title (Z-A)</option>
+          <option value="author" {% if sort == 'author' %}selected{% endif %}>Author (A-Z)</option>
+          <option value="-author" {% if sort == '-author' %}selected{% endif %}>Author (Z-A)</option>
+          <option value="new" {% if sort == 'new' %}selected{% endif %}>Newly Added</option>
+          <option value="old" {% if sort == 'old' %}selected{% endif %}>Oldest First</option>
+        </select>
+
+        <select name="genre" class="form-select">
+          <option value="">All genres</option>
+          {% for val,label in genres %}
+            <option value="{{ val }}" {% if val == genre %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+
+        <select name="status" class="form-select">
+          <option value="">Any status</option>
+          <option value="Available" {% if status == 'Available' %}selected{% endif %}>Available</option>
+          <option value="Checked out" {% if status == 'Checked out' %}selected{% endif %}>Checked out</option>
+        </select>
+
+        <button class="btn btn-outline-primary" type="submit">Apply</button>
+      </div>
+    </form>
+
+    <div id="booksGrid" class="row g-4">
+      {% if books %}
+        {% for b in books %}
+          <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up">
+            <div class="card h-100 rounded-4 book-card hover-card">
+              <!-- Using a placeholder cover tied to ID (until you have real covers) -->
+              <img src="https://picsum.photos/seed/{{ b.bookID }}/600/800"
+                   alt="{{ b.bookTitle }}" class="card-img-top">
+              <!-- {% if b.cover %}
+              <img src="{{ b.cover.url }}" class="card-img-top" alt="{{ b.bookTitle }}">
+              {% endif %} -->
+
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="card-title">
+                    <a href="{% url 'book_detail' b.pk %}" class="link-underline link-underline-opacity-0">{{ b.bookTitle|highlight:q|safe }}</a>
+                  </h5>
+                  <span class="badge {% if b.is_available %}text-bg-success{% else %}text-bg-secondary{% endif %}">
+                    {% if b.is_available %}Available{% else %}Checked out{% endif %}
+                  </span>
+                </div>
+                <p class="text-muted mb-2">{{ b.bookAuthor|highlight:q|safe }}</p>
+                <span class="tag">{{ b.get_bookGenre_display }}</span>
+                <div class="small text-muted">
+                  ⭐ {{ b.avg_rating|default:0|floatformat:1 }} ({{ b.reviews_count|default:0 }} reviews)
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted">No books matched your filters.</p>
+      {% endif %}
+    </div>
+
+  </div>
+</main>
+{% endblock %}

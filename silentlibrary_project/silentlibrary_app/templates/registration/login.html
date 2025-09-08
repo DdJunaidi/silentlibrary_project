@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Login — Silent Library{% endblock %}
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-4">Login</h1>
+
+  <form method="post" novalidate class="row g-3">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="col-md-6">
+      <label for="id_username" class="form-label">Username</label>
+      {{ form.username }}
+      {% for e in form.username.errors %}
+        <div class="invalid-feedback d-block">{{ e }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <label for="id_password" class="form-label">Password</label>
+      {{ form.password }}
+      {% for e in form.password.errors %}
+        <div class="invalid-feedback d-block">{{ e }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Login</button>
+      <a class="btn btn-link" href="{% url 'password_reset' %}">Forgot password?</a>
+    </div>
+  </form>
+</main>
+{% endblock %}

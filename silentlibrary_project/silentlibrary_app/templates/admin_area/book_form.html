@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Admin — {% if mode == "create" %}Add Book{% else %}Edit Book{% endif %}{% endblock %}
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-4">
+    {% if mode == "create" %}Add Book{% else %}Edit Book{% endif %}
+    {% if book %}: {{ book.bookTitle }}{% endif %}
+  </h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="col-md-6">
+      <label class="form-label" for="id_bookTitle">Title</label>
+      {{ form.bookTitle }}
+      {% for e in form.bookTitle.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="id_bookAuthor">Author</label>
+      {{ form.bookAuthor }}
+      {% for e in form.bookAuthor.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="id_bookGenre">Genre</label>
+      {{ form.bookGenre }}
+      {% for e in form.bookGenre.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="form-check mt-4">
+        {{ form.is_available }} <label class="form-check-label ms-1" for="id_is_available">Available</label>
+      </div>
+      {% for e in form.is_available.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-6">
+    <label for="id_cover" class="form-label">Cover image</label>
+    {{ form.cover }}
+    {% for e in form.cover.errors %}
+      <div class="invalid-feedback d-block">{{ e }}</div>
+    {% endfor %}
+    {% if form.instance and form.instance.cover %}
+      <div class="mt-2"><img src="{{ form.instance.cover.url }}" alt="cover" class="img-thumbnail" style="max-height:140px"></div>
+    {% endif %}
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">
+        {% if mode == "create" %}Create{% else %}Save changes{% endif %}
+      </button>
+
+      <a class="btn btn-link" href="{% url 'admin_book_list' %}">Back</a>
+    </div>
+  </form>
+</main>
+{% endblock %}

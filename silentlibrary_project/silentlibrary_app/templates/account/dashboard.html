@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Your Library — Dashboard{% endblock %}
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-3">Welcome, {{ user.first_name|default:user.username }}!</h1>
+  <p class="text-muted mb-4">This is your personalized page.</p>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card rounded-4 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Quick links</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a href="{% url 'profile_edit' %}">Edit profile</a></li>
+            <li><a href="{% url 'books' %}">Browse books</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {# Add more dashboard widgets later (e.g., saved books, history, etc.) #}
+  </div>
+</main>
+{% endblock %}

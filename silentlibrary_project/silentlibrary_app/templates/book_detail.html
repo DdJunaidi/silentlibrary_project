@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}{{ book.bookTitle }} — Silent Library{% endblock %}
+
+{% block content %}
+<main class="py-5">
+  <div class="container">
+    <a class="btn btn-link mb-3" href="{% url 'books' %}">← Back to Books</a>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        {% if book.cover %}
+          <img src="{{ book.cover.url }}" alt="{{ book.bookTitle }}" class="img-fluid rounded shadow-sm">
+        {% else %}
+          <div class="border rounded p-5 text-center text-muted">No cover</div>
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <h1 class="mb-1">{{ book.bookTitle }}</h1>
+        <div class="mb-2">by <strong>{{ book.bookAuthor }}</strong></div>
+        <div class="mb-3">⭐ {{ book.avg_rating|default:0|floatformat:1 }} ({{ book.reviews_count|default:0 }} reviews)</div>
+        <div class="mb-3"><span class="badge text-bg-secondary">{{ book.get_bookGenre_display }}</span></div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h3 class="h5">Reviews</h3>
+        {% if reviews %}
+          <ul class="list-group">
+            {% for r in reviews %}
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <div><strong>{{ r.user.username }}</strong></div>
+                  <div>⭐ {{ r.rating }}</div>
+                </div>
+                {% if r.comment %}<p class="mb-0 mt-2">{{ r.comment }}</p>{% endif %}
+                <small class="text-muted">{{ r.created_at|date:"M d, Y H:i" }}</small>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted">No reviews yet.</p>
+        {% endif %}
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="h5">Write a review</h3>
+        {% if user.is_authenticated %}
+          <form method="post" action="{% url 'add_review' book.pk %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">Rating (1-5)</label>
+              {{ review_form.rating }}
+              {% for e in review_form.rating.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Comment</label>
+              {{ review_form.comment }}
+            </div>
+            <button class="btn btn-primary">Submit review</button>
+          </form>
+        {% else %}
+          <p>Please <a href="{% url 'login' %}?next={% url 'book_detail' book.pk %}">log in</a> to write a review.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

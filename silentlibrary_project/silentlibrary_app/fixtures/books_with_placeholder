@@ -1,0 +1,202 @@
+[
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 1,
+    "fields": {
+      "bookTitle": "1984",
+      "bookAuthor": "George Orwell",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 2,
+    "fields": {
+      "bookTitle": "To Kill a Mockingbird",
+      "bookAuthor": "Harper Lee",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 3,
+    "fields": {
+      "bookTitle": "The Great Gatsby",
+      "bookAuthor": "F. Scott Fitzgerald",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 4,
+    "fields": {
+      "bookTitle": "Pride and Prejudice",
+      "bookAuthor": "Jane Austen",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 5,
+    "fields": {
+      "bookTitle": "The Hobbit",
+      "bookAuthor": "J.R.R. Tolkien",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 6,
+    "fields": {
+      "bookTitle": "Moby Dick",
+      "bookAuthor": "Herman Melville",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 7,
+    "fields": {
+      "bookTitle": "War and Peace",
+      "bookAuthor": "Leo Tolstoy",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 8,
+    "fields": {
+      "bookTitle": "Hamlet",
+      "bookAuthor": "William Shakespeare",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 9,
+    "fields": {
+      "bookTitle": "The Catcher in the Rye",
+      "bookAuthor": "J.D. Salinger",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 10,
+    "fields": {
+      "bookTitle": "Crime and Punishment",
+      "bookAuthor": "Fyodor Dostoevsky",
+      "bookGenre": "drama",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 11,
+    "fields": {
+      "bookTitle": "Frankenstein",
+      "bookAuthor": "Mary Shelley",
+      "bookGenre": "horror",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 12,
+    "fields": {
+      "bookTitle": "Dracula",
+      "bookAuthor": "Bram Stoker",
+      "bookGenre": "horror",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 13,
+    "fields": {
+      "bookTitle": "The Shining",
+      "bookAuthor": "Stephen King",
+      "bookGenre": "horror",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 14,
+    "fields": {
+      "bookTitle": "It",
+      "bookAuthor": "Stephen King",
+      "bookGenre": "horror",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 15,
+    "fields": {
+      "bookTitle": "The Exorcist",
+      "bookAuthor": "William Peter Blatty",
+      "bookGenre": "horror",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 16,
+    "fields": {
+      "bookTitle": "Gone Girl",
+      "bookAuthor": "Gillian Flynn",
+      "bookGenre": "thriller",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 17,
+    "fields": {
+      "bookTitle": "The Girl with the Dragon Tattoo",
+      "bookAuthor": "Stieg Larsson",
+      "bookGenre": "thriller",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 18,
+    "fields": {
+      "bookTitle": "Angels & Demons",
+      "bookAuthor": "Dan Brown",
+      "bookGenre": "thriller",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 19,
+    "fields": {
+      "bookTitle": "The Da Vinci Code",
+      "bookAuthor": "Dan Brown",
+      "bookGenre": "thriller",
+      "is_available": true
+    }
+  },
+  {
+    "model": "silentlibrary_app.book",
+    "pk": 20,
+    "fields": {
+      "bookTitle": "The Silence of the Lambs",
+      "bookAuthor": "Thomas Harris",
+      "bookGenre": "thriller",
+      "is_available": true
+    }
+  }
+]

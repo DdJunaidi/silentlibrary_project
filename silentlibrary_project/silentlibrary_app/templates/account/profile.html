@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile — Silent Library{% endblock %}
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-4">Edit your profile</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="col-12 col-md-4">
+      <label class="form-label">Profile photo</label>
+    {% if request.user.profile and request.user.profile.photo %}
+      <div class="mb-2">
+        <img src="{{ request.user.profile.photo.url }}" alt="profile photo" class="img-thumbnail" style="max-height:160px">
+      </div>
+    {% endif %}
+    {{ pform.photo }}
+    {% for e in pform.photo.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+    </div>
+
+
+    <div class="col-md-6">
+      <label for="id_first_name" class="form-label">First name</label>
+      {{ form.first_name }}
+      {% for e in form.first_name.errors %}
+        <div class="invalid-feedback d-block">{{ e }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <label for="id_last_name" class="form-label">Last name</label>
+      {{ form.last_name }}
+      {% for e in form.last_name.errors %}
+        <div class="invalid-feedback d-block">{{ e }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-6">
+      <label for="id_email" class="form-label">Email</label>
+      {{ form.email }}
+      {% for e in form.email.errors %}
+        <div class="invalid-feedback d-block">{{ e }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Save changes</button>
+      <a class="btn btn-link" href="{% url 'dashboard' %}">Back</a>
+    </div>
+  </form>
+</main>
+{% endblock %}
